@@ -1,5 +1,5 @@
 const randomWords = require('random-words');
-const { fork } = require('child_process')
+
 
 function getRandomWordSync({ withErrors = false } = {}) {
     // console.log(withErrors)

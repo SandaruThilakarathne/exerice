@@ -162,10 +162,10 @@ const asyncFizzBuzzErrorHandled = async () => {
  * 
  * the speedupfunction
  */
-const BonusSpeedupFunction = () => {
+const BonusSpeedupFunction = async () => {
     
     for (let i = 1; i < 101; i++) {
-        const childProcess = fork("./word-maker/index.js");
+        const childProcess =  await fork("./word-maker/index.js");
         childProcess.send(true)
         childProcess.on("message", message => {
             if (message.length % 3 == 0) {
@@ -182,7 +182,7 @@ const BonusSpeedupFunction = () => {
         })
     }
 }
-let t2 = Date.now()
+
 
 
 /**
@@ -193,19 +193,19 @@ let t2 = Date.now()
  * from the above mentioned scenario
  */
 const main = async () => {
-    randomwordPrint();
-    fizzBuzz();
+    // randomwordPrint();
+    // fizzBuzz();
 
-    await asyncFizzBuzz();
-    await asyncRandomWordPrint()
+    // await asyncFizzBuzz();
+    // await asyncRandomWordPrint()
 
-    randomwordPrintWithErrorHandled();
-    fizzBuzzErrorHandled();
+    // randomwordPrintWithErrorHandled();
+    // fizzBuzzErrorHandled();
 
-    await asyncRandomWordPrintErrorHandled();
-    await asyncFizzBuzzErrorHandled();
+    // await asyncRandomWordPrintErrorHandled();
+    // await asyncFizzBuzzErrorHandled();
 
-    BonusSpeedupFunction();
+    await BonusSpeedupFunction();
 
 
     stream.end();
